@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+
+local.sqlite
+
+apps/audios/
+
+apps/audio_detector/best_model.pt
+apps/audio_detector/cmvn.pt
+.env
+.DS_Store

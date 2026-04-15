@@ -1,0 +1,23 @@
+{% extends "audio_detector/base.html" %}
+{% block content %}
+<div>
+    <h4>音声ファイル新規登録</h4>
+    <p>アップロードする音声を選択してください</p>
+    <form action="{{ url_for('audio_detector.upload_audio') }}" method="post" enctype="multipart/form-data"
+        novalidate="novalidate">
+        {{ form.csrf_token }}
+        <div>
+            <label>
+                <span> {{ form.audio(class="form-control-file") }} </span>
+            </label>
+        </div>
+        {% for error in form.audio.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+        <hr />
+        <div>
+            <label> {{ form.submit(class="btn btn-primary") }} </label>
+        </div>
+    </form>
+</div>
+{% endblock %}

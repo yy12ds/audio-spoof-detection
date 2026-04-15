@@ -1,0 +1,60 @@
+{% extends "audio_detector/base.html" %}
+{% block content %}
+
+<!-- flashエラーを表示する -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li class="flash">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<!-- 音声アップロード画面へのリンクを追加する -->
+<div class="col-md-10 text-right dt-image-register-btn">
+    <a href="{{ url_for('audio_detector.upload_audio') }}" class="btn btn-primary">音声新規登録</a>
+</div>
+<!-- 音声一覧を表示する -->
+{% for user_audio in user_audios %}
+<div class="card col-md-7 dt-audio-content">
+    <header class="d-flex justify-content-between">
+        <div class="dt-audio-username">{{ user_audio.User.username }}</div>
+        <!-- 音声分類フォームを追加する -->
+        <div class="d-flex flex-row-reverse">
+            <!-- 削除ボタンのフォームを追加する -->
+            <div class="p-2">
+                <form action="{{ url_for('audio_detector.delete_audio', audio_id=user_audio.UserAudio.id) }}" method="POST">
+                    {{ delete_form.csrf_token }}
+                    {% if current_user.id == user_audio.User.id %}
+                    {{ delete_form.submit(class="btn btn-danger") }}
+                    {% else %}
+                    {{ delete_form.submit(class="btn btn-danger", disabled="disabled") }}
+                    {% endif %}
+                </form>
+            </div>
+            <div class="p-2">
+                <form action="{{ url_for('audio_detector.detect', audio_id=user_audio.UserAudio.id) }}" method="POST">
+                    {{ audio_detector_form.csrf_token }}
+                    {% if current_user.id == user_audio.User.id and user_audio.UserAudio.is_detected == False %}
+                    {{audio_detector_form.submit(class="btn btn-primary")}}
+                    {% else %}
+                    {{ audio_detector_form.submit(class="btn btn-primary",disabled="disabled")}}
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </header>
+    <section>
+        <audio controls src="{{ url_for('audio_detector.audio_file', filename=user_audio.UserAudio.audio_path) }}"></audio>
+    </section>
+    <!-- タグ情報を表示する -->
+    <footer>
+        {% for tag in user_audio_tag_dict[user_audio.UserAudio.id] %}
+        #{{tag.tag_name }}
+        {% endfor %}
+    </footer>
+</div>
+{% endfor %}
+{% endblock %}
