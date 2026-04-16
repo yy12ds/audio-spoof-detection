@@ -6,6 +6,15 @@ This project is a web application that detects spoofed audio.
 
 Users can upload an audio file and the system predicts whether the audio is genuine or spoofed.
 
+## 概要（日本語）
+
+このプロジェクトはディープラーニングを用いて音声が本物か偽造かを判定するWebアプリケーションです。
+
+音声ファイルをアップロードすると、Light CNNベースのモデルが音声の真偽を判定します。
+
+アプリケーションはDockerでコンテナ化され、Google Cloud Runにデプロイされています。
+
+
 ## Demo
 
 Deployed on Google Cloud:
@@ -19,10 +28,7 @@ The detection model is based on a Light CNN architecture designed for audio clas
 Audio signals are converted into mel-spectrogram features and fed into the neural network for classification.
 
 
-## 概要（日本語）
+## Dataset
 
-このプロジェクトはディープラーニングを用いて音声が本物か偽造かを判定するWebアプリケーションです。
-
-音声ファイルをアップロードすると、Light CNNベースのモデルが音声の真偽を判定します。
-
-アプリケーションはDockerでコンテナ化され、Google Cloud Runにデプロイされています。
+The model was trained using the ASVspoof 2019 dataset.
+Specifically, the Logical Access (LA) subset was used for training, validation, and evaluation.
