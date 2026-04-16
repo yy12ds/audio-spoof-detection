@@ -21,6 +21,13 @@ Deployed on Google Cloud:
 
 https://spoofing-audio-detector-app-214049572350.asia-northeast1.run.app
 
+## Sample Audio
+
+You can test the model using the following files.
+
+- samples/sample_real.flac
+- samples/sample_fake.flac
+
 ## Model
 
 The detection model is based on a Light CNN architecture designed for audio classification.
