@@ -4,16 +4,19 @@
 
 This project is a web application that detects spoofed audio.
 
-Users can upload an audio file and the system predicts whether the audio is genuine or spoofed.
+Users need to register with a username, email address, and password before using the application.
+
+After logging in, users can upload an audio file, and the system predicts whether the audio is genuine or spoofed.
 
 ## 概要（日本語）
 
 このプロジェクトはディープラーニングを用いて音声が本物か偽造かを判定するWebアプリケーションです。
 
-音声ファイルをアップロードすると、Light CNNベースのモデルが音声の真偽を判定します。
+利用するには、ユーザー名、メールアドレス、パスワードを登録する必要があります。
+
+ログイン後、音声ファイルをアップロードすると、Light CNNベースのモデルが音声の真偽を判定します。
 
 アプリケーションはDockerでコンテナ化され、Google Cloud Runにデプロイされています。
-
 
 ## Demo
 
