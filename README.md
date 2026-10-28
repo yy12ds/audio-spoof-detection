@@ -24,6 +24,8 @@ Deployed on Google Cloud:
 
 https://spoofing-audio-detector-app-214049572350.asia-northeast1.run.app
 
+※現在は費用発生を抑えるため停止中。
+
 ## Sample Audio
 
 You can test the model using the following files.
